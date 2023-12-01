@@ -1,9 +1,11 @@
-import eng_to_ipa as ipa
+#import eng_to_ipa as ipa
+ipa = ""
 
 class English2IPA:
     def __init__(cls):
         filename = "cmudict-0.7b-ipa.txt"
         prondict = cls.make_prondict(filename)
+
 
     @classmethod
     def english_generate_ipa(cls, sent: str):
@@ -12,7 +14,9 @@ class English2IPA:
         keys = prondict.keys()
         for w in words:
             if w not in keys:
-                addendum = ipa.convert(w)
+                #print(f"w is {w}")
+                raise RuntimeError(f"\"{w}\" not in dict")
+                #addendum = ipa.convert(w)
             else:
                 addendum = prondict[w][0]
             if not suprasegmental:

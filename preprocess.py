@@ -9,12 +9,12 @@ import os
 import shutil
 from epitran import Epitran
 
-import utils
+#import utils
 
 import sys
 sys.path.insert(0, "./converter")
 
-from japanese_to_ipa import Japanese2IPA
+#from japanese_to_ipa import Japanese2IPA
 from maltese_to_ipa import Maltese2IPA
 from finnish_to_ipa import Finnish2IPA
 from greek_to_ipa import Greek2IPA
@@ -33,7 +33,7 @@ parser.add_argument("--clear_cache", action="store_true",
 parser.add_argument("--cache_dir", type=str,
                     help="Specify the cache directory's path if you choose to clear the cache.")
 args = parser.parse_args()
-assert args.clear_cache and args.cache_dir is not None, "Cache directory's path is not defined."
+#assert args.clear_cache and args.cache_dir is not None, "Cache directory's path is not defined."
 
 def transliterate(sample: dict):
     if "chapter_id" in sample.column_names:
@@ -41,11 +41,11 @@ def transliterate(sample: dict):
     else:
         lang = sample["locale"]
     sent = sample["sentence"]
-    if lang == "ja":
-        converter = Japanese2IPA()
-        ipa = converter.remove_ja_punct(sent)
-        ipa = converter.convert_sentence_to_ipa(ipa)
-    elif lang == "mt":
+    #if lang == "ja":
+    #    converter = Japanese2IPA()
+    #    ipa = converter.remove_ja_punct(sent)
+    #    ipa = converter.convert_sentence_to_ipa(ipa)
+    if lang == "mt":
         ipa = Maltese2IPA.maltese_generate_ipa(sent)
     elif lang == "fi":
         ipa = Finnish2IPA.finnish_generate_ipa(sent)
